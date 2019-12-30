@@ -1,0 +1,82 @@
+app.system_testing()
+で、モデルも利用した推論の実行を行っている模様。
+
+モデルは、種類ごとに
+/store/projects/ml/mathG/DCASE2017/baseline/DCASE2017-baseline-system/applications/system/task2/learner/dataset_c17f65145b5c15a1a0afc148dc881423/feature_extractor_55ff217ecf31320b4d18e4e1d8f62a94/feature_stacker_d1b7b226d0bb278b6b3aab557e501d2c/feature_normalizer_86c6764b339414c628793552d084ff29/feature_aggregator_db31e2e54edd841b744da9dc385ab466/learner_d33fae90cf8ac2f03c749de5cd551af3
+に記録されるみたい。
+モデルが変われば、ハッシュ値が変わったディレクトリが生成される模様。
+
+
+ipdb>  hasattr(model_container, 'data_processor')
+False
+
+
+■ 実際にpredictしているところ
+                frame_probabilities = model_container.predict(
+                    feature_data=feature_data,
+                )
+
+■
+ipdb>  frame_probabilities.shape
+(1, 1501)
+ipdb>  feature_data.shape
+(1501, 200)
+特徴量 time: 1500, 周波数: 200? stack している可能性ある？
+
+feature_list
+{'mel': {'feat': [array([[ -4.9921308,  -6.8127418,  -8.27339  , ..., -11.935065 ,
+           -12.281855 , -12.7022915],
+          [ -5.31972  ,  -6.123804 ,  -7.168656 , ..., -11.131154 ,
+           -11.4557295, -12.012918 ],
+          [ -4.727575 ,  -6.4510207,  -7.4674263, ..., -11.562244 ,
+           -11.813134 , -12.33866  ],
+          ...,
+          [ -5.136989 ,  -5.7218328,  -6.880217 , ..., -12.093683 ,
+           -12.210219 , -12.4502325],
+          [ -4.8826995,  -5.775437 ,  -7.178931 , ..., -11.99949  ,
+           -12.115118 , -12.499706 ],
+          [ -5.3415813,  -6.4713783,  -6.4889216, ..., -12.394382 ,
+           -12.423141 , -12.574921 ]], dtype=float32)],
+  'stat': None,
+  'meta': {'parameters': {'mono': True,
+    'window': 'hamming_asymmetric',
+    'spectrogram_type': 'magnitude',
+    'n_mels': 40,
+    'normalize_mel_bands': False,
+    'n_fft': 2048,
+    'fmin': 0,
+    'fmax': 22050,
+    'htk': False,
+    'log': True,
+    'fs': 44100,
+    'win_length_samples': 1764,
+    'hop_length_samples': 882,
+    'method': 'mel',
+    'win_length_seconds': 0.04,
+    'hop_length_seconds': 0.02,
+    '_hash': '57a55966f25a1b3722bd922a63c75875'},
+   'datetime': '2019-12-08 01:34:43',
+   'audio_file': '/store/projects/ml/mathG/DCASE2017/baseline/DCASE2017-baseline-system/applications/data/TUT-rare-sound-events-2017-development/generated_data/mixtures_devtest_0367e094f3f5c81ef017d128ebff4a3c/audio/mixture_devtest_babycry_000_c02f92b79f2bbefa98d008f3c2d9b704.wav',
+   'extractor_version': '0.0.1'}}}
+
+
+feature_list['mel']['feat'][0].shape
+>    (1501, 40)
+
+feature_data = model_container.feature_stacker.process(
+    feature_data=feature_list
+)
+
+-- これだけでは周波数領域 40まで
+
+feature_data['feat'][0].shape
+>    (1501, 40)
+
+    feature_data = model_container.feature_normalizer.normalize(feature_data)
+    feature_data = model_container.feature_aggregator.process(feature_data)
+
+aggregator通すことで
+
+feature_data['feat'][0].shape
+> (1501, 200)
+となっているっぽい

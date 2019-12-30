@@ -1,0 +1,6 @@
+        # Set current dataset
+        self.dataset = self._get_dataset(dataset=kwargs.get('dataset'))
+
+
+Datasets には何が入る？
+→

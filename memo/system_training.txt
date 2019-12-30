@@ -1,0 +1,89 @@
+■
+
+feature_processing_chain を準備
+
+
+    feature_processing_chain.append(feature_stacker)
+
+feature_stacker: 特徴量の matrix つくる
+　　　(feature_repository に登録されているものと変わらない？
+　　　recipe　によってoutput 変わりそう
+
+feature_normalizer:
+　　算出済みの統計値によって、特徴量を標準化する (実際は標準化のほうがただしいようだ mean と std なので...)
+　　standardizer ? いずれにせよミスリーディング
+
+
+feature_aggregator:
+   特徴量を モデル 投入用に整える? サンプルの場合、行列を1次元ベクトルに
+   CNN 使うなら変えたほうがよさそうだ。
+   ※ モデルを可視化して、次元のチェックをしたほうが良い
+
+
+
+data_processing_chainはサンプルでは使っていない
+
+
+###################
+ 投入データの作成場所
+###################
+if not self.params.get_path('learner.parameters.generator.enable'):
+    # If generator is not used, load features now.
+    # Do only feature processing here. Leave data processing for learner.
+    feature_data, feature_length = data_processor.load(
+        feature_filename_dict=feature_filenames,
+        process_features=True,
+        process_data=False
+    )
+    data[audio_filename] = FeatureContainer(features=[feature_data])
+
+###################
+Model Summary
+###################
+[D]   Model summary
+[D]     Layer type      | Output               | Param   | Name                   | Connected to                | Activ.  | Init
+[D]     --------------- + -------------------- + ------  + ---------------------  + --------------------------- + ------- + ------
+[D]     Dense           | (None, 50)           | 10050   | dense_1                | dense_1_input[0][0]         | relu    | uniform
+[D]     Dropout         | (None, 50)           | 0       | dropout_1              | dense_1[0][0]               | ---     | ---
+[D]     Dense           | (None, 50)           | 2550    | dense_2                | dropout_1[0][0]             | relu    | uniform
+[D]     Dropout         | (None, 50)           | 0       | dropout_2              | dense_2[0][0]               | ---     | ---
+[D]     Dense           | (None, 1)            | 51      | dense_3                | dropout_2[0][0]             | sigmoid | uniform
+[D]
+[D]   Parameters
+[D]     Trainable	[12,651]
+[D]     Non-Trainable	[0]
+[D]     Total		[12,651]
+[D]
+[D]   Positives items 	[27055]	(4.09 %)
+[D]   Negatives items 	[634886]	(95.91 %)
+[D]   Class weights 	[None]
+[D]   Feature vector 	[200]
+[D]   Batch size 	[256]
+[D]   Epochs 		[200]
+
+
+■ モデルを決定している？
+app.params.get_path('learner.method')
+> 'mlp'
+↓
+SceneClassifierMLP
+を使うことが確定っぽい...
+
+
+
+app.params.get_path('feature_aggregator.aggregation_recipe')
+ [{'method': 'flatten'}]
+
+
+
+class DataProcessor(object):
+    """Data processors with feature and data processing chains
+
+    Feature processing chain comprehend all processing done to get feature matrix synchronized with meta data.
+
+    Data processing chain is applied to the feature matrix and meta data to reshape data for machine learning.
+
+
+# 学習のログを可視化できるっぽい
+if 'learning_history' in model_container:
+

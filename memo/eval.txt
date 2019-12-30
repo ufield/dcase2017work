@@ -1,0 +1,66 @@
+evaluation
+
+
+sed_eval
+http://tut-arg.github.io/sed_eval/
+
+■
+
+Evaluationのための推定結果の場所
+/store/projects/ml/mathG/DCASE2017/baseline/DCASE2017-baseline-system/applications/system/task2/recognizer/dataset_c17f65145b5c15a1a0afc148dc881423/feature_extractor_55ff217ecf31320b4d18e4e1d8f62a94/feature_stacker_d1b7b226d0bb278b6b3aab557e501d2c/feature_normalizer_86c6764b339414c628793552d084ff29/feature_aggregator_db31e2e54edd841b744da9dc385ab466/learner_d33fae90cf8ac2f03c749de5cd551af3/recognizer_c5143b74ef67d78e7a154ca3808faf4b/results_fold1_babycry.txt
+にある。
+では、これ自体を作ってるところは？
+　→ recognizerが作られているところは？
+
+current_file_results と meta の比較。構造は以下
+
+
+-  current_file_results:
+[{'file': 'generated_data/mixtures_devtest_0367e094f3f5c81ef017d128ebff4a3c/audio/mixture_devtest_babycry_000_c02f92b79f2bbefa98d008f3c2d9b704.wav',
+  'onset': 1.18,
+  'offset': 1.32,
+  'event_label': 'babycry',
+  'event_onset': 1.18,
+  'event_offset': 1.32},
+ {'file': 'generated_data/mixtures_devtest_0367e094f3f5c81ef017d128ebff4a3c/audio/mixture_devtest_babycry_000_c02f92b79f2bbefa98d008f3c2d9b704.wav',
+  'onset': 1.96,
+  'offset': 2.2800000000000002,
+  'event_label': 'babycry',
+  'event_onset': 1.96,
+  'event_offset': 2.2800000000000002}]
+
+-  meta:
+[{'file': 'generated_data/mixtures_devtest_0367e094f3f5c81ef017d128ebff4a3c/audio/mixture_devtest_babycry_000_c02f92b79f2bbefa98d008f3c2d9b704.wav',
+  'onset': 0.8814731551300574,
+  'offset': 2.7214731551300573,
+  'event_label': 'babycry',
+  'event_onset': 0.8814731551300574,
+  'event_offset': 2.7214731551300573}]
+
+
+■ metric ごとの evaluate方法
+segment_based_metric.evaluate(
+    reference_event_list=meta,
+    estimated_event_list=current_file_results
+)
+
+event_based_metric.evaluate(
+    reference_event_list=meta,
+    estimated_event_list=current_file_results
+)
+
+※ evaluate は、繰り返すことで自動的に統計的な値を算出してくれるらしい
+
+■
+
+
+
+
+
+
+
+
+
+
+
+

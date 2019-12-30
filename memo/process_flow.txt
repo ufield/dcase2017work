@@ -1,0 +1,27 @@
+task2.pyの全体の流れ、データの変換、学習、パラメータなどをメモ
+
+● → 処理
+- → データ
+
+もとの wav データ
+-
+
+●
+
+● feature_extractor
+- [] を
+- [] の mel スペクトログラムに変換
+
+
+30/ hop_length_seconds -> 1500
+hop_length_seconds: 0.02
+
+
+
+● feature_normalizer
+↓
+
+● feature
+
+
+

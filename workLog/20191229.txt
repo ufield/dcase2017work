@@ -1,0 +1,6 @@
+python task2.py -s dcase2017_gpu -m challenge
+を実行
+　→　エラー...
+
+
+

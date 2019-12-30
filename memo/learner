@@ -1,0 +1,62 @@
+SceneClassifierKerasSequential
+CNNとかRNNをぶち込むには、これを使わないといけないっぽい。
+
+task2.py は MLPの方使っている
+# Get learner
+learner = self._get_learner(
+    method=self.params.get_path('learner.method'),
+    class_labels=[event_label],
+    data_processor=data_processor,
+    feature_processing_chain=feature_processing_chain,
+    feature_normalizer=feature_normalizer,
+    feature_stacker=feature_stacker,
+    feature_aggregator=feature_aggregator,
+    params=self.params.get_path('learner'),
+    filename=current_model_file,
+    disable_progress_bar=self.disable_progress_bar,
+    log_progress=self.log_system_progress,
+    data_generators=self.DataGenerators if self.params.get_path('learner.parameters.generator.enable') else None,
+)
+
+この段階ではモデル入れてない？_get_leranerの先で作っているのか？
+
+
+
+class SceneClassifierKerasSequential(SceneClassifierMLP):
+    """Sequential Keras model for Acoustic scene classification"""
+    def __init__(self, *args, **kwargs):
+        super(SceneClassifierKerasSequential, self).__init__(*args, **kwargs)
+        self.method = 'keras_seq' ← ★ これで SceneClassifierKerasSequential 指定
+
+■ learnerの選び方
+
+from dcase_framework.learners import *
+from dcase_framework.utils import get_class_inheritors, posix_path, check_pkg_resources
+
+learner_list = get_class_inheritors(EventDetector)
+learner_list
+
+
+[dcase_framework.learners.EventDetectorGMM,
+ dcase_framework.learners.EventDetectorGMMdeprecated,
+ dcase_framework.learners.EventDetectorMLP,
+ dcase_framework.learners.EventDetectorKerasSequential]
+
+ こうなるので
+
+for learner_item in learner_list:
+    learner = learner_item()
+    if learner.method:
+        app.Learners[learner.method] = learner_item
+
+
+app.Learners
+
+{'gmm': dcase_framework.learners.EventDetectorGMM,
+ 'gmm_deprecated': dcase_framework.learners.EventDetectorGMMdeprecated,
+ 'mlp': dcase_framework.learners.EventDetectorMLP,
+ 'keras_seq': dcase_framework.learners.EventDetectorKerasSequential}
+
+上記から選ぶとよい!!
+
+

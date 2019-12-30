@@ -1,0 +1,10 @@
+■ waveplotについて
+縦軸の単位は?
+-1 ~ 1 に正規化されていてないっぽい。何かを基準にしている？
+
+■ power_to_dbについて
+ 10*log10(S/ref) ということらしい。
+ S: input power (
+  ref: If scalar, the amplitude abs(S) is scaled relative to ref: 10 * log10(S / ref). Zeros in the output correspond to positions where S == ref.
+        デフォルトは 1.
+
