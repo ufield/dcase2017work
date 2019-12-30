@@ -76,8 +76,8 @@ defaults:
   # Paths
   # ==========================================================
   path:
-    data: ../applications/data/
-    system_base: ../applications/system/task2_cakir/
+    data:  /store/projects/ml/mathG/DCASE2017/myWork/data/
+    system_base: /store/projects/ml/mathG/DCASE2017/myWork/main/results/task2_cakir/
     feature_extractor: feature_extractor/
     feature_normalizer: feature_normalizer/
     learner: learner/
@@ -168,8 +168,10 @@ defaults:
             bitdepth: 24
             length_seconds: 30.0
             anticlipping_factor: 0.2
-          event_presence_prob: 0.99
-          mixtures_per_class: 1000
+#          event_presence_prob: 0.99
+#          mixtures_per_class: 1000
+          event_presence_prob: 0.5
+          mixtures_per_class: 500
           ebr_list: [-6, 0, 6]
         test:
           mixture:
@@ -288,7 +290,8 @@ defaults:
         maxout_pool_size: 2
         nb_fnn_hidden_units : []  # e.g. [32, 64] will add two sequential hidden layers with units 32 and 64.
       conv_params:
-        batchnorm_flag  : true    # Batch normalization after conv operation and before conv activation
+#        batchnorm_flag  : true    # Batch normalization after conv operation and before conv activation
+        batchnorm_flag  : false    # Batch normalization after conv operation and before conv activation
         batchnorm_axis  : 1       # -1 for feature-wise, 1 for channel-wise, 2 for time-wise
         conv_act        : relu
         conv_border_mode: same
@@ -346,7 +349,7 @@ defaults:
 
       training:
         epochs: 200
-        batch_size: 32
+        batch_size: 64
         shuffle: true
 
         epoch_processing:

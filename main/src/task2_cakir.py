@@ -23,6 +23,7 @@ sys.path.append(os.path.split(os.path.dirname(os.path.realpath(__file__)))[0])
 import numpy
 import textwrap
 import platform
+sys.path.append('/store/projects/ml/mathG/DCASE2017/baseline/DCASE2017-baseline-system/')
 
 from dcase_framework.application_core import BinarySoundEventAppCore
 from dcase_framework.parameters import ParameterContainer
@@ -422,8 +423,10 @@ def main(argv):
     args = parser.parse_args()
 
     # Load default parameters from a file
-    default_parameters_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)),
-                                               os.path.splitext(os.path.basename(__file__))[0] + '.defaults.yaml')
+    default_parameters_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../parameters',
+                                               os.path.splitext(os.path.basename(__file__))[0]+'.defaults.yaml')
+    # default_parameters_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+    #                                            os.path.splitext(os.path.basename(__file__))[0] + '.defaults.yaml')
     if args.parameter_set:
         parameters_sets = args.parameter_set.split(',')
     else:

@@ -1,0 +1,34 @@
+[D]   Model summary
+[D]     Layer type      | Output               | Param   | Name                   | Connected to                | Activ.  | Init
+[D]     --------------- + -------------------- + ------  + ---------------------  + --------------------------- + ------- + ------
+[D]     InputLayer      | (None, 1, 1501, 40)  | 0       | input_1                | ---                         | ---     | ---
+[D]     Conv2D          | (None, 96, 1501, 40) | 2496    | conv2d_1               | input_1[0][0]               | linear  | normal
+[D]     Activation      | (None, 96, 1501, 40) | 0       | activation_1           | conv2d_1[0][0]              | relu    | ---
+[D]     Dropout         | (None, 96, 1501, 40) | 0       | dropout_1              | activation_1[0][0]          | ---     | ---
+[D]     MaxPooling2D    | (None, 96, 1501, 8)  | 0       | max_pooling2d_1        | dropout_1[0][0]             | ---     | ---
+[D]     MaxPooling2D    | (None, 96, 1501, 8)  | 0       | max_pooling2d_2        | max_pooling2d_1[0][0]       | ---     | ---
+[D]     Conv2D          | (None, 96, 1501, 8)  | 230496  | conv2d_2               | max_pooling2d_2[0][0]       | linear  | normal
+[D]     Activation      | (None, 96, 1501, 8)  | 0       | activation_2           | conv2d_2[0][0]              | relu    | ---
+[D]     Dropout         | (None, 96, 1501, 8)  | 0       | dropout_2              | activation_2[0][0]          | ---     | ---
+[D]     MaxPooling2D    | (None, 96, 1501, 2)  | 0       | max_pooling2d_3        | dropout_2[0][0]             | ---     | ---
+[D]     MaxPooling2D    | (None, 96, 1501, 2)  | 0       | max_pooling2d_4        | max_pooling2d_3[0][0]       | ---     | ---
+[D]     Conv2D          | (None, 96, 1501, 2)  | 230496  | conv2d_3               | max_pooling2d_4[0][0]       | linear  | normal
+[D]     Activation      | (None, 96, 1501, 2)  | 0       | activation_3           | conv2d_3[0][0]              | relu    | ---
+[D]     Dropout         | (None, 96, 1501, 2)  | 0       | dropout_3              | activation_3[0][0]          | ---     | ---
+[D]     MaxPooling2D    | (None, 96, 1501, 1)  | 0       | max_pooling2d_5        | dropout_3[0][0]             | ---     | ---
+[D]     MaxPooling2D    | (None, 96, 1501, 1)  | 0       | max_pooling2d_6        | max_pooling2d_5[0][0]       | ---     | ---
+[D]     Permute         | (None, 1501, 96, 1)  | 0       | permute_1              | max_pooling2d_6[0][0]       | ---     | ---
+[D]     Reshape         | (None, 1501, 96)     | 0       | reshape_1              | permute_1[0][0]             | ---     | ---
+[D]     GRU             | (None, 1501, 96)     | 55584   | gru_1                  | reshape_1[0][0]             | tanh    | uniform
+[D]     TimeDistributed | (None, 1501, 1)      | 97      | time_distributed_1     | gru_1[0][0]                 | ---     | ---
+[D]
+
+
+
+BatchNorm 入れるとエラー
+
+
+
+
+
+
