@@ -1,0 +1,6 @@
+
+■ segmentBasedMetrics の評価方法について
+http://tut-arg.github.io/sed_eval/_modules/sed_eval/sound_event.html#SegmentBasedMetrics.evaluate
+
+time_resolution 1 sec. だが、端数の扱いは？
+

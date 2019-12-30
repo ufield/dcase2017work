@@ -1,0 +1,8 @@
+_hash: db31e2e54edd841b744da9dc385ab466
+aggregation_recipe:
+- method: flatten
+enable: true
+hop_length_frames: 1
+hop_length_seconds: 0.02
+win_length_frames: 5
+win_length_seconds: 0.1

@@ -1,0 +1,44 @@
+   Model summary
+[D]     Layer type      | Output               | Param   | Name                   | Connected to                | Activ.  | Init
+[D]     --------------- + -------------------- + ------  + ---------------------  + --------------------------- + ------- + ------
+[D]     Dense           | (None, 50)           | 10050   | dense_7                | dense_7_input[0][0]         | relu    | uniform
+[D]     Dropout         | (None, 50)           | 0       | dropout_5              | dense_7[0][0]               | ---     | ---
+[D]     Dense           | (None, 50)           | 2550    | dense_8                | dropout_5[0][0]             | relu    | uniform
+[D]     Dropout         | (None, 50)           | 0       | dropout_6              | dense_8[0][0]               | ---     | ---
+[D]     Dense           | (None, 1)            | 51      | dense_9                | dropout_6[0][0]             | sigmoid | uniform
+[D]
+[D]   Parameters
+[D]     Trainable	[12,651]
+[D]     Non-Trainable	[0]
+[D]     Total		[12,651]
+[D]
+[D]   Positives items 	[16699]	(2.47 %)
+[D]   Negatives items 	[658751]	(97.53 %)
+[D]   Class weights 	[None]
+[D]   Feature vector 	[200]
+[D]   Batch size 	[256]
+[D]   Epochs 		[200]
+                                                                                                                                                                                                                [I]   Stopping criteria met at epoch[124]
+[I]     metric[val_binary_accuracy], patience[10]██████████████████████████████████▎                                       | 125/200 [09:37<05:48,  4.65s/it, l_tra=0.056, l_val=0.071, m_tra=0.986, m_val=0.985]
+[I]
+[I]   DONE     [0:29:38.913687 ]
+[I]
+[I] System testing
+[I] ==================================================
+[I]
+[I]   DONE     [0:01:05.934690 ]
+[I]
+[I] System evaluation [Development setup][folds]
+[I] ==================================================
+[I]
+[I]
+[I]   Overall metrics
+[I]   ===============
+[I]     Event label       | Evt. F1 | Evt. ER | Seg. F1 | Seg. ER |
+[I]     ----------------- + ------- + ------- + ------- + ------- +
+[I]     babycry           | 68.98   | 0.76    | 81.29   | 0.34    |
+[I]     glassbreak        | 89.32   | 0.20    | 83.02   | 0.30    |
+[I]     gunshot           | 50.44   | 0.90    | 42.45   | 0.87    |
+[I]     ----------------- + ------- + ------- + ------- + ------- +
+[I]     Average           | 69.58   | 0.62    | 68.92   | 0.50    |
+[I]

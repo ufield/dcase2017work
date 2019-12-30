@@ -1,0 +1,34 @@
+_hash: c17f65145b5c15a1a0afc148dc881423
+method: development
+parameters:
+  _hash: 4dd76b874aa9468c3b0c4f8eb36ae4f4
+  evaluation_mode: folds
+  fold_list:
+  - 1
+  name: TUTRareSoundEvents_2017_DevelopmentSet
+  synth_parameters:
+    seed: 42
+    test:
+      ebr_list:
+      - -6
+      - 0
+      - 6
+      event_presence_prob: 0.5
+      mixture:
+        anticlipping_factor: 0.2
+        bitdepth: 24
+        fs: 44100
+        length_seconds: 30.0
+      mixtures_per_class: 500
+    train:
+      ebr_list:
+      - -6
+      - 0
+      - 6
+      event_presence_prob: 0.5
+      mixture:
+        anticlipping_factor: 0.2
+        bitdepth: 24
+        fs: 44100
+        length_seconds: 30.0
+      mixtures_per_class: 500

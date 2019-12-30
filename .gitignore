@@ -45,8 +45,12 @@ ipython_config.py
 # pyenv
 .python-version
 
-# plots
+# mywork
 plots/
+logs/
+models/
+data/
+results/
 
 # yml
 *.yml

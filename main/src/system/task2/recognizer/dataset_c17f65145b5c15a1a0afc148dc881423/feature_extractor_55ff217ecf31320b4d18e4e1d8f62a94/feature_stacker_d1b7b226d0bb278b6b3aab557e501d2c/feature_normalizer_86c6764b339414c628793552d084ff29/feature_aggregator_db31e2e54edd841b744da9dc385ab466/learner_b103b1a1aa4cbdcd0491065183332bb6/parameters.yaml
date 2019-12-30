@@ -1,0 +1,65 @@
+_hash: b103b1a1aa4cbdcd0491065183332bb6
+event_handling: event-dependent
+hop_length_seconds: 0.02
+method: mlp
+parameters:
+  _hash: 9897bc32c20e1426a5c66985c4cccc19
+  keras:
+    backend: tensorflow
+    backend_parameters:
+      CNR: true
+      device: gpu
+      fastmath: true
+      floatX: float32
+      openmp: true
+      optimizer: FAST_RUN
+      threads: 4
+  metrics:
+  - binary_accuracy
+  model:
+    config:
+    - class_name: Dense
+      config:
+        activation: relu
+        kernel_initializer: uniform
+        units: 50
+    - class_name: Dropout
+      config:
+        rate: 0.2
+    - class_name: Dense
+      config:
+        activation: relu
+        kernel_initializer: uniform
+        units: 50
+    - class_name: Dropout
+      config:
+        rate: 0.2
+    - class_name: Dense
+      config:
+        activation: sigmoid
+        kernel_initializer: uniform
+        units: CLASS_COUNT
+    loss: binary_crossentropy
+    metrics:
+    - binary_accuracy
+    optimizer:
+      type: Adam
+  seed: 5
+  training:
+    batch_size: 256
+    callbacks:
+    - parameters:
+        initial_delay: 100
+        min_delta: 0
+        monitor: val_binary_accuracy
+        patience: 10
+      type: Stopper
+    epochs: 1
+    shuffle: true
+  validation:
+    enable: true
+    seed: 5
+    setup_source: generated_event_file_balanced
+    validation_amount: 0.1
+show_model_information: false
+win_length_seconds: 0.1

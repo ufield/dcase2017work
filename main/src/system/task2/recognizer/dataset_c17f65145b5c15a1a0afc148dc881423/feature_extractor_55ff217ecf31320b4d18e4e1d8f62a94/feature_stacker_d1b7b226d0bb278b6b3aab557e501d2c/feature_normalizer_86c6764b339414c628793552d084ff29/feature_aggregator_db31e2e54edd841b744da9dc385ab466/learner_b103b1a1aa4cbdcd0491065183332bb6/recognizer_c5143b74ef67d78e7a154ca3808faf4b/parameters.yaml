@@ -1,0 +1,20 @@
+_hash: c5143b74ef67d78e7a154ca3808faf4b
+enable: true
+event_activity_processing:
+  enable: true
+  type: median_filtering
+  window_length_frames: 27
+  window_length_seconds: 0.54
+event_handling: event-dependent
+event_post_processing:
+  enable: false
+  minimum_event_gap_second: 0.1
+  minimum_event_length_seconds: 0.1
+frame_accumulation:
+  enable: false
+  type: sliding_sum
+  window_length_seconds: 1.0
+frame_binarization:
+  enable: true
+  threshold: 0.5
+  type: global_threshold
