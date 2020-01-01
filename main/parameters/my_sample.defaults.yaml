@@ -1,21 +1,54 @@
-active_set: crnn
+active_set: mini
 
 sets:
-  - set_id: crnn
-    description: CRNN parameters based on grid search for DCASE 2017 task 2 dataset
+  - set_id: mini
+    description: DCASE2017 baseline (GPU) using DCASE2017 task 2 development dataset
 
+    feature_stacker:
+      stacking_recipe: mel
+
+    learner:
+      method: mysample
+
+    learner_method_parameters:
+      mysample:
+
+        training:
+          epochs: 200
+          #          epochs: 1
+          batch_size: 32
+          shuffle: true
+#          callbacks:
+#            - type: Stopper
+#              parameters:
+#                monitor: val_binary_accuracy
+#                initial_delay: 100
+#                min_delta: 0
+#                patience: 10
   - set_id: crnn
     learner_method_parameters:
-      multifunctionalDNN_seq:
+      mysample:
         conv_params:
+#          nb_conv_filters: [96,96,96]
           nb_conv_filters: [96,96,96]
           nb_conv_pool_freq: [5,4,2]
+#          nb_conv_pool_freq: [10,4]
         rnn_params:
-          nb_rnn_hidden_units: [96,96]
+#          nb_rnn_hidden_units: [96,96]
+          nb_rnn_hidden_units: [96]
+          rnn_dropout_U   : 0.
+          rnn_dropout_W   : 0.
+
+        training:
+          epochs: 200
+          #          epochs: 1
+          batch_size: 32
+          shuffle: true
+
 
   - set_id: cnn
     learner_method_parameters:
-      multifunctionalDNN_seq:
+      mysample:
         conv_params:
           nb_conv_filters: [96,96,96]
           nb_conv_pool_freq: [5,4,2]
@@ -26,7 +59,7 @@ sets:
 
   - set_id: rnn
     learner_method_parameters:
-      multifunctionalDNN_seq:
+      mysample:
         conv_params:
           nb_conv_filters: []
           nb_conv_pool_freq: []
@@ -35,7 +68,7 @@ sets:
 
   - set_id: fnn
     learner_method_parameters:
-      multifunctionalDNN_seq:
+      mysample:
         conv_params:
           nb_conv_filters: []
           nb_conv_pool_freq: []
@@ -76,16 +109,17 @@ defaults:
   # Paths
   # ==========================================================
   path:
-    data:  /store/projects/ml/mathG/DCASE2017/myWork/data/
-    system_base: /store/projects/ml/mathG/DCASE2017/myWork/main/results/task2_cakir/
+    data: /store/projects/ml/mathG/DCASE2017/myWork/data/
+    system_base: /store/projects/ml/mathG/DCASE2017/myWork/main/results/my_sample/
     feature_extractor: feature_extractor/
     feature_normalizer: feature_normalizer/
     learner: learner/
     recognizer: recognizer/
     evaluator: evaluator/
 
-    recognizer_challenge_output: challenge_submission/task2_cakir/
+    recognizer_challenge_output: challenge_submission/task2/
     logs: logs/
+
 
   # ==========================================================
   # Logging
@@ -246,12 +280,12 @@ defaults:
   # Learner
   # ==========================================================
   learner:
-    method: multifunctionalDNN_seq                             #
+    method: mysample                             #
 
     show_model_information: false           # Show extra model information after model is ready
 
   learner_method_parameters:
-    multifunctionalDNN_seq:
+    mysample:
       seed: 0
       keras:
         backend: tensorflow
