@@ -1,0 +1,24 @@
+
+            if batchnorm_flag:
+                model = BatchNormalization(axis=1)(model) # TODO: batchnorm_axis?
+                # model = BatchNormalization(axis=batchnorm_axis)(model) # TODO: batchnorm_axis?
+
+
+Shape must be rank 1 but is rank 0 for 'batch_normalization_1/cond/Reshape_4' (op: 'Reshape') with input shapes: [1,96,1,1], [].
+Exception ignored in: <bound method tqdm.__del__ of                     Event :   0%|                                                                                                                                                                 | 0/3 [00:02<?, ?it/s]>
+Traceback (most recent call last):
+  File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/site-packages/tqdm/std.py", line 1039, in __del__
+  File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/site-packages/tqdm/std.py", line 1223, in close
+  File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/site-packages/tqdm/std.py", line 555, in _decr_instances
+  File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/site-packages/tqdm/_monitor.py", line 51, in exit
+  File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/threading.py", line 521, in set
+  File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/threading.py", line 364, in notify_all
+  File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/threading.py", line 347, in notify
+TypeError: 'NoneType' object is not callable
+
+
+https://github.com/keras-team/keras/issues/10648
+↓
+
+please change tensorflow_backend in keras by yourself as suggested by @see--
+In keras version - 2.2.4 -> backend --> tesnorflow_backend.py : change "()" to "[ ]" in line no 1908,1910,1914, 1918.

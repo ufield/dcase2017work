@@ -30,5 +30,57 @@ BatchNorm 入れるとエラー
 
 
 
-
-
+2019-12-30 21:04:39,697 [dcase_framework.learners]      [DEBUG   ]        Model summary
+2019-12-30 21:04:39,697 [dcase_framework.learners]      [DEBUG   ]          Layer type      | Output               | Param   | Name                   | Connected to                | Activ.  | Init
+2019-12-30 21:04:39,697 [dcase_framework.learners]      [DEBUG   ]          --------------- + -------------------- + ------  + ---------------------  + --------------------------- + ------- + ------
+2019-12-30 21:04:39,698 [dcase_framework.learners]      [DEBUG   ]          InputLayer      | (None, 1, 1501, 40)  | 0       | input_1                | ---                         | ---     | ---
+2019-12-30 21:04:39,698 [dcase_framework.learners]      [DEBUG   ]          Conv2D          | (None, 96, 1501, 40) | 2496    | conv2d_1               | input_1[0][0]               | linear  | normal
+2019-12-30 21:04:39,698 [dcase_framework.learners]      [DEBUG   ]          Activation      | (None, 96, 1501, 40) | 0       | activation_1           | conv2d_1[0][0]              | relu    | ---
+2019-12-30 21:04:39,698 [dcase_framework.learners]      [DEBUG   ]          Dropout         | (None, 96, 1501, 40) | 0       | dropout_1              | activation_1[0][0]          | ---     | ---
+2019-12-30 21:04:39,698 [dcase_framework.learners]      [DEBUG   ]          MaxPooling2D    | (None, 96, 1501, 8)  | 0       | max_pooling2d_1        | dropout_1[0][0]             | ---     | ---
+2019-12-30 21:04:39,698 [dcase_framework.learners]      [DEBUG   ]          MaxPooling2D    | (None, 96, 1501, 8)  | 0       | max_pooling2d_2        | max_pooling2d_1[0][0]       | ---     | ---
+2019-12-30 21:04:39,698 [dcase_framework.learners]      [DEBUG   ]          Conv2D          | (None, 96, 1501, 8)  | 230496  | conv2d_2               | max_pooling2d_2[0][0]       | linear  | normal
+2019-12-30 21:04:39,698 [dcase_framework.learners]      [DEBUG   ]          Activation      | (None, 96, 1501, 8)  | 0       | activation_2           | conv2d_2[0][0]              | relu    | ---
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          Dropout         | (None, 96, 1501, 8)  | 0       | dropout_2              | activation_2[0][0]          | ---     | ---
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          MaxPooling2D    | (None, 96, 1501, 2)  | 0       | max_pooling2d_3        | dropout_2[0][0]             | ---     | ---
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          MaxPooling2D    | (None, 96, 1501, 2)  | 0       | max_pooling2d_4        | max_pooling2d_3[0][0]       | ---     | ---
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          Conv2D          | (None, 96, 1501, 2)  | 230496  | conv2d_3               | max_pooling2d_4[0][0]       | linear  | normal
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          Activation      | (None, 96, 1501, 2)  | 0       | activation_3           | conv2d_3[0][0]              | relu    | ---
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          Dropout         | (None, 96, 1501, 2)  | 0       | dropout_3              | activation_3[0][0]          | ---     | ---
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          MaxPooling2D    | (None, 96, 1501, 1)  | 0       | max_pooling2d_5        | dropout_3[0][0]             | ---     | ---
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          MaxPooling2D    | (None, 96, 1501, 1)  | 0       | max_pooling2d_6        | max_pooling2d_5[0][0]       | ---     | ---
+2019-12-30 21:04:39,699 [dcase_framework.learners]      [DEBUG   ]          Permute         | (None, 1501, 96, 1)  | 0       | permute_1              | max_pooling2d_6[0][0]       | ---     | ---
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]          Reshape         | (None, 1501, 96)     | 0       | reshape_1              | permute_1[0][0]             | ---     | ---
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]          GRU             | (None, 1501, 96)     | 55584   | gru_1                  | reshape_1[0][0]             | tanh    | uniform
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]          TimeDistributed | (None, 1501, 1)      | 97      | time_distributed_1     | gru_1[0][0]                 | ---     | ---
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]        Parameters
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]          Trainable   [519,169]
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]          Non-Trainable       [0]
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]          Total               [519,169]
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]        Files
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]          Training    [441]
+2019-12-30 21:04:39,700 [dcase_framework.learners]      [DEBUG   ]          Validation  [50]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]        Input
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]          Feature vector      [40]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]          Sequence    [1501]          (30.02 sec)
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]        Batch size    [128]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]        Epochs                [200]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]        Generator
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]          Shuffle     [True]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]          Epoch size  [4 batches]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]          Buffer size         [100 files]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]        Epoch processing      [Epoch-by-Epoch]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]
+2019-12-30 21:04:39,701 [dcase_framework.learners]      [DEBUG   ]        External metrics
+2019-12-30 21:04:39,702 [dcase_framework.learners]      [DEBUG   ]          Metrics             Label   Evaluator:Name
+2019-12-30 21:04:39,702 [dcase_framework.learners]      [DEBUG   ]                      [evtER] [sed_eval.event_based:overall.error_rate.error_rate]
+2019-12-30 21:04:39,702 [dcase_framework.learners]      [DEBUG   ]                      [evtF1] [sed_eval.event_based:overall.f_measure.f_measure]
+2019-12-30 21:04:39,702 [dcase_framework.learners]      [DEBUG   ]          Interval    [1 epochs]
+2019-12-30 21:04:39,702 [dcase_framework.learners]      [DEBUG   ]
+2019-12-30 21:04:40,122 [tensorflow          ]  [WARNING ]      From /home/hirotoshi/.pyenv/versions/anaco

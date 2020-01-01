@@ -1,0 +1,21 @@
+        if self.learner_params.get_path('input_sequencer.enable'):
+            processed_data = []
+            for item in files:
+                if processor == 'training':
+                    processed_data.append(
+                        self.data_processor_training.process_data(
+                            data=data[item].feat[0]
+                        )
+                    )
+
+                else:
+                    processed_data.append(
+                        self.data_processor.process_data(
+                            data=data[item].feat[0]
+                        )
+                    )
+
+            return numpy.concatenate(processed_data)
+
+        else:
+            return numpy.vstack([data[x].feat[0] for x in files])
