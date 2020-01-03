@@ -56,3 +56,5 @@ results/
 *.yml
 
 __pycache__
+
+.envrc

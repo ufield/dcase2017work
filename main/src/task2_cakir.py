@@ -117,7 +117,7 @@ class MultifunctionalDeepLearningSequential(EventDetectorKerasSequential):
         pool_stride_freq = learner_params['conv_params']['pool_stride_freq']
         pool_stride_time = learner_params['conv_params']['pool_stride_time']
         rnn_all_scan_flag = learner_params['conv_params'][
-            'rnn_all_scan_flag']  # this is actually only used when conv layer is present (for now).
+            'rnn_all_scan_flag']  # this is actually onlynb_input_freq used when conv layer is present (for now).
         batchnorm_flag = learner_params['conv_params']['batchnorm_flag']
         batchnorm_axis = learner_params['conv_params']['batchnorm_axis']
 

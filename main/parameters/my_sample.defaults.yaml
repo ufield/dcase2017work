@@ -30,12 +30,14 @@ sets:
       mysample:
         conv_params:
 #          nb_conv_filters: [96,96,96]
-          nb_conv_filters: [96,96,96]
+#          nb_conv_filters: [96,96,96]
+#          nb_conv_filters: [32,32,32]
+          nb_conv_filters: [160,160,160]
           nb_conv_pool_freq: [5,4,2]
 #          nb_conv_pool_freq: [10,4]
         rnn_params:
 #          nb_rnn_hidden_units: [96,96]
-          nb_rnn_hidden_units: [96]
+          nb_rnn_hidden_units: [160, 160, 160]
           rnn_dropout_U   : 0.
           rnn_dropout_W   : 0.
 

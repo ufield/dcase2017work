@@ -11,195 +11,18 @@ sys.path.append('/store/projects/ml/mathG/DCASE2017/baseline/DCASE2017-baseline-
 from dcase_framework.application_core import BinarySoundEventAppCore
 from dcase_framework.parameters import ParameterContainer
 from dcase_framework.utils import *
-from dcase_framework.learners import EventDetectorKerasSequential
+# from dcase_framework.learners import EventDetectorKerasSequential
 
+from model.cakir import CakirModel
 
 __version_info__ = ('0', '0', '1')
 __version__ = '.'.join(__version_info__)
 
 
-class MySampleDeepLearningSeaquential(EventDetectorKerasSequential):
-
-    def __init__(self, *args, **kwargs):
-        super(MySampleDeepLearningSeaquential, self).__init__(*args, **kwargs)
-        self.method = 'mysample'
-
-    def create_model(self, input_shape):
-        from keras.layers import MaxPooling1D, Conv2D, Conv1D, MaxPooling2D, Input, RepeatVector
-        from keras.layers.advanced_activations import LeakyReLU
-        from keras.layers.core import Dense, Activation, Dropout, Flatten, Reshape, Permute
-        from keras.layers.recurrent import LSTM, GRU
-        from keras.layers.normalization import BatchNormalization
-        from keras.models import Model
-        from keras.regularizers import L1L2
-        from keras.layers.wrappers import TimeDistributed
-        from keras.legacy.layers import MaxoutDense
-
-        learner_params = self.learner_params
-
-        nb_channels = 1
-        nb_input_time = 1501
-        nb_input_freq = 40
-
-        nb_fnn_hidden_units = [30]
-        nb_fnn_layers = len(nb_fnn_hidden_units)
-
-        filters = 10
-        kernel_size = (5, 5) # nb_conv_time = 5, nb_input_freq=5
-        conv_stride = (1, 1)
-        padding = 'same'
-        conv_init = 'he_normal'
-        # conv_filters = [96, 96]
-        conv_filters = learner_params['conv_params']['nb_conv_filters']
-        conv_layers  = len(conv_filters)
-        conv_pool_freq = learner_params['conv_params']['nb_conv_pool_freq']
-        conv_bord_mode = learner_params['conv_params']['conv_border_mode']
-        conv_act = learner_params['conv_params']['conv_act']
-        batchnorm_axis = learner_params['conv_params']['batchnorm_axis']
-
-        rnn_hidden_units = learner_params['rnn_params']['nb_rnn_hidden_units']
-        rnn_layers = len(rnn_hidden_units)
-
-        w_reg = None
-        b_reg = None
-        b_constr = None
-        w_constr = None
-
-        batchnorm_flag = True
-        dropout_flag = True
-
-        nb_classes = 1
-
-        fnn_type = 'Dense'
-        fnn_init = 'he_normal'
-        if fnn_type == 'Dense':
-            fnn_type = Dense
-
-        output_act = 'sigmoid'
-
-        print('input shape ===================')
-        print(input_shape)
-
-        model = None
-        inputs = Input(shape=(nb_channels, nb_input_time, nb_input_freq))
-
-        for i in range(len(conv_filters)):
-
-            if i == 0:
-                model = Conv2D(filters=conv_filters[i], kernel_size=kernel_size,
-                           strides=conv_stride,
-                           padding=padding, data_format="channels_first",
-                           kernel_initializer=conv_init,
-                           kernel_regularizer=w_reg, bias_regularizer=b_reg, kernel_constraint=w_constr,
-                           bias_constraint=b_constr)(inputs)
-            else:
-                model = Conv2D(filters=conv_filters[i], kernel_size=kernel_size,
-                           strides=conv_stride,
-                           padding=padding, data_format="channels_first",
-                           kernel_initializer=conv_init,
-                           kernel_regularizer=w_reg, bias_regularizer=b_reg, kernel_constraint=w_constr,
-                           bias_constraint=b_constr)(model)
-
-            if batchnorm_flag:
-                model = BatchNormalization(axis=1)(model) # TODO: batchnorm_axis?
-                # model = BatchNormalization(axis=batchnorm_axis)(model) # TODO: batchnorm_axis?
-            if 'LeakyReLU' in conv_act:
-                model = LeakyReLU()(model)
-            else:
-                model = Activation(conv_act)(model)
-            if dropout_flag:
-                model = Dropout(0.5)(model)
-
-            # 周波数方向のpooling
-            # nb_conv_pool_freq = 40
-            model = MaxPooling2D(pool_size=(1, conv_pool_freq[i]),
-                                 strides=(1, conv_pool_freq[i]), padding='valid', data_format='channels_first')(model)
-
-        # FFN 投入用に
-        model = Permute((2, 1, 3))(model)
-        nb_input_freq = 96
-
-        # final_model = Model(inputs=inputs, outputs=model)
-        # final_model.summary()
-        # import pdb
-        # pdb.set_trace()
-
-        # condense the last two axes (number of channels * outputs per channel).
-        model = Reshape((nb_input_time, nb_input_freq))(model)
-
-        if rnn_layers > 0:  # no need to read RNN parameters if there is no RNN layer (nb_rnn_layers = 0).
-            rnn_dropout_U = learner_params['rnn_params']['rnn_dropout_U']
-            rnn_dropout_W = learner_params['rnn_params']['rnn_dropout_W']
-            rnn_hid_act = learner_params['rnn_params']['rnn_hid_act']
-            rnn_projection_downsampling = learner_params['rnn_params']['rnn_projection_downsampling']
-            rnn_type = learner_params['rnn_params']['rnn_type']
-            if rnn_type == 'GRU':
-                rnn_type = GRU
-            elif rnn_type == 'LSTM':
-                rnn_type = LSTM
-            else:
-                raise ('unknown RNN type!')
-            statefulness_flag = learner_params['rnn_params']['statefulness_flag']
-
-
-        for i in range(rnn_layers):
-            if i == 0:
-                inp_shape = (nb_input_time, nb_input_freq)
-            else:
-                # if rnn_projection_downsampling:
-                #     inp_shape = (nb_input_time, nb_rnn_proj_hidden_units[i - 1])
-                # else:
-                inp_shape = (nb_input_time, rnn_hidden_units[i - 1])
-
-            if i == 0 and conv_layers == 0:
-                model = Reshape((nb_input_time, nb_input_freq))(inputs)
-
-            model = rnn_type(units=rnn_hidden_units[i], input_shape=inp_shape,
-                             activation=rnn_hid_act, return_sequences=True, stateful=False,
-                             dropout=rnn_dropout_W, recurrent_dropout=rnn_dropout_U, implementation=2)(model)
-
-        # =============================================
-        fnn_hid_act = learner_params['fnn_params']['fnn_hid_act']
-        fnn_batchnorm_flag = False
-        # for i in range(nb_fnn_layers):  # FNN layers loop.
-        #     model = TimeDistributed(fnn_type(units=nb_fnn_hidden_units[i], kernel_initializer=fnn_init))(model)
-        # if fnn_batchnorm_flag:
-        #     model = BatchNormalization(axis=-1)(model)
-        # model = Activation(fnn_hid_act)(model)
-
-        # final_model = Model(inputs=inputs, outputs=[model_short, model_long])
-        model = TimeDistributed(Dense(units=nb_classes, kernel_initializer=fnn_init, activation=output_act))(model)
-        final_model = Model(inputs=inputs, outputs=model)
-
-        self.model = final_model
-        self.logger.debug(self.params)
-        self.model.summary()
-        self.compile_model()
-
-    def compile_model(self):
-        from keras.optimizers import SGD, RMSprop, Adagrad, Adam, Adadelta
-        optimizer = self.learner_params['general']['optimizer']
-        loss_func = self.learner_params['general']['loss']
-        l_rate = self.learner_params['general']['learning_rate']
-        if optimizer == 'sgd':
-            optimizer = SGD(lr=l_rate)
-        elif optimizer == 'rmsprop':
-            optimizer = RMSprop(lr=l_rate)
-        elif optimizer == 'adagrad':
-            optimizer = Adagrad(lr=l_rate)
-        elif optimizer == 'adam':
-            optimizer = Adam(lr=l_rate)
-        elif optimizer == 'adadelta':
-            optimizer = Adadelta(lr=l_rate)
-        else:
-            pass
-        self.model.compile(optimizer=optimizer, loss=loss_func, metrics=self.learner_params.get_path('model.metrics'))
-
-
 class CustomAppCore(BinarySoundEventAppCore):
     def __init__(self, *args, **kwargs):
         kwargs['Learners'] = {
-            'mysample': MySampleDeepLearningSeaquential,
+            'mysample': CakirModel,
         }
         super(CustomAppCore, self).__init__(*args, **kwargs)
 
@@ -448,8 +271,8 @@ def main(argv):
         # System training
         # ==================================================
         if params['flow']['train_system']:
-            # app.system_training()
-            app.system_training(overwrite=True)
+            app.system_training()
+            # app.system_training(overwrite=True)
 
         # System evaluation
         if not args.mode or args.mode == 'dev':
@@ -457,6 +280,7 @@ def main(argv):
             # System testing
             # ==================================================
             if params['flow']['test_system']:
+                # app.system_testing(overwrite=True)
                 app.system_testing()
 
             # System evaluation

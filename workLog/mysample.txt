@@ -757,3 +757,593 @@ Traceback (most recent call last):
   File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/threading.py", line 364, in notify_all
   File "/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/threading.py", line 347, in notify
 TypeError: 'NoneType' object is not callable
+
+
+
+
+
+
+
+=============================Cakir Table 1. units 96 =================================================
+Using TensorFlow backend.
+default_parameters_filename
+/store/projects/ml/mathG/DCASE2017/myWork/main/src/../parameters/my_sample.defaults.yaml
+hoge
+['crnn']
+/store/projects/ml/mathG/DCASE2017/baseline/DCASE2017-baseline-system/dcase_framework/files.py:379: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  dict.update(self, yaml.load(infile))
+[I] DCASE 2017::Rare Sound Event Detection / Custom MySample Deep Learning
+[I]
+[I] Initialize [Development setup][folds]
+[I] ==================================================
+[I]
+[I]   System
+[I]     Name                 : DCASE 2017::Rare Sound Event Detection / Custom MySample Deep Learning
+[I]     Parameter set        : crnn
+[I]     Setup                : Python[3.6.9], Numpy[1.17.2], sklearn[0.21.3], Keras[2.2.4], Theano[1.0.4], Librosa[0.7.1]
+[I]   Dataset
+[I]     Name                 : TUT-rare-sound-events-2017-development
+[I]     Active folds         : [1]
+[I]   Evaluator
+[I]     Save path            : ../results/my_sample/evaluator
+Set                      :   0%|                                                                                             | 0/2 [00:00<?, ?it/s]/store/projects/ml/mathG/DCASE2017/baseline/DCASE2017-baseline-system/dcase_framework/files.py:658: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  data = yaml.load(infile)
+[I]   DONE     [0:00:04.171560 ]
+[I]
+[I] Feature extractor
+[I] ==================================================
+[I]
+[I]   DONE     [0:00:00.118662 ] [2987 items]
+[I]
+[I] Feature normalizer
+[I] ==================================================
+[I]
+[I]   DONE     [0:00:00.000652 ]
+[I]
+[I] System training
+[I] ==================================================
+[I]
+[I]   DONE     [0:00:00.000313 ]
+[I]
+[I] System testing
+[I] ==================================================
+[I]
+[I]   DONE     [0:00:00.000333 ]
+[I]
+[I] System evaluation [Development setup][folds]
+[I] ==================================================
+[I]
+[I]   Event [babycry], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 86.90 %
+[I]     Precision                       : 85.21 %
+[I]     Recall                          : 88.66 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.27
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.11
+[I]     Insertion rate                  : 0.15
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     babycry      | 247     257   | 86.9%    85.2%    88.7%  | 0.27     0.11     0.15   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 86.79 %
+[I]     Precision                       : 85.60 %
+[I]     Recall                          : 88.01 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.27
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.12
+[I]     Insertion rate                  : 0.15
+[I]   Accuracy
+[I]     Sensitivity                     : 88.01 %
+[I]     Specificity                     : 96.81 %
+[I]     Balanced accuracy               : 92.41 %
+[I]     Accuracy                        : 95.25 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     babycry      | 709     729   | 86.8%    85.6%    88.0%  | 0.27     0.12     0.15   | 88.0%    96.8%    92.4%    95.2%
+[I]   Event [glassbreak], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 94.09 %
+[I]     Precision                       : 95.85 %
+[I]     Recall                          : 92.40 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.12
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.08
+[I]     Insertion rate                  : 0.04
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     glassbreak   | 250     241   | 94.1%    95.9%    92.4%  | 0.12     0.08     0.04   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 88.78 %
+[I]     Precision                       : 93.57 %
+[I]     Recall                          : 84.45 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.21
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.16
+[I]     Insertion rate                  : 0.06
+[I]   Accuracy
+[I]     Sensitivity                     : 84.45 %
+[I]     Specificity                     : 99.34 %
+[I]     Balanced accuracy               : 91.90 %
+[I]     Accuracy                        : 97.81 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     glassbreak   | 431     389   | 88.8%    93.6%    84.5%  | 0.21     0.16     0.06   | 84.5%    99.3%    91.9%    97.8%
+[I]   Event [gunshot], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 79.75 %
+[I]     Precision                       : 83.41 %
+[I]     Recall                          : 76.40 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.39
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.24
+[I]     Insertion rate                  : 0.15
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     gunshot      | 250     229   | 79.7%    83.4%    76.4%  | 0.39     0.24     0.15   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 46.59 %
+[I]     Precision                       : 33.85 %
+[I]     Recall                          : 74.72 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 1.71
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.25
+[I]     Insertion rate                  : 1.46
+[I]   Accuracy
+[I]     Sensitivity                     : 74.72 %
+[I]     Specificity                     : 79.81 %
+[I]     Balanced accuracy               : 77.26 %
+[I]     Accuracy                        : 79.19 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     gunshot      | 530     1170  | 46.6%    33.8%    74.7%  | 1.71     0.25     1.46   | 74.7%    79.8%    77.3%    79.2%
+[I]
+[I]   Overall metrics
+[I]   ===============
+[I]     Event label       | Evt. F1 | Evt. ER | Seg. F1 | Seg. ER |
+[I]     ----------------- + ------- + ------- + ------- + ------- +
+[I]     babycry           | 86.90   | 0.27    | 86.79   | 0.27    |
+[I]     glassbreak        | 94.09   | 0.12    | 88.78   | 0.21    |
+[I]     gunshot           | 79.75   | 0.39    | 46.59   | 1.71    |
+[I]     ----------------- + ------- + ------- + ------- + ------- +
+[I]     Average           | 86.92   | 0.26    | 74.05   | 0.73    |
+[I]
+[I]   DONE     [0:00:02.031806 ]
+
+
+============ Cakir table1. - units 32 ====================
+Layer (type)                 Output Shape              Param #
+=================================================================
+input_3 (InputLayer)         (None, 1, 1501, 40)       0
+_________________________________________________________________
+conv2d_7 (Conv2D)            (None, 32, 1501, 40)      832
+_________________________________________________________________
+activation_7 (Activation)    (None, 32, 1501, 40)      0
+_________________________________________________________________
+dropout_7 (Dropout)          (None, 32, 1501, 40)      0
+_________________________________________________________________
+max_pooling2d_7 (MaxPooling2 (None, 32, 1501, 8)       0
+_________________________________________________________________
+conv2d_8 (Conv2D)            (None, 32, 1501, 8)       25632
+_________________________________________________________________
+activation_8 (Activation)    (None, 32, 1501, 8)       0
+_________________________________________________________________
+dropout_8 (Dropout)          (None, 32, 1501, 8)       0
+_________________________________________________________________
+max_pooling2d_8 (MaxPooling2 (None, 32, 1501, 2)       0
+_________________________________________________________________
+conv2d_9 (Conv2D)            (None, 32, 1501, 2)       25632
+_________________________________________________________________
+activation_9 (Activation)    (None, 32, 1501, 2)       0
+_________________________________________________________________
+dropout_9 (Dropout)          (None, 32, 1501, 2)       0
+_________________________________________________________________
+max_pooling2d_9 (MaxPooling2 (None, 32, 1501, 1)       0
+_________________________________________________________________
+permute_3 (Permute)          (None, 1501, 32, 1)       0
+_________________________________________________________________
+reshape_3 (Reshape)          (None, 1501, 32)          0
+_________________________________________________________________
+gru_3 (GRU)                  (None, 1501, 32)          6240
+_________________________________________________________________
+time_distributed_3 (TimeDist (None, 1501, 1)           33
+=================================================================
+Total params: 58,369
+Trainable params: 58,369
+Non-trainable params: 0
+_________________________________________________________________
+[D]   Model summary
+[D]     Layer type      | Output               | Param   | Name                   | Connected to                | Activ.  | Init
+[D]     --------------- + -------------------- + ------  + ---------------------  + --------------------------- + ------- + ------
+[D]     InputLayer      | (None, 1, 1501, 40)  | 0       | input_3                | ---                         | ---     | ---
+[D]     Conv2D          | (None, 32, 1501, 40) | 832     | conv2d_7               | input_3[0][0]               | linear  | normal
+[D]     Activation      | (None, 32, 1501, 40) | 0       | activation_7           | conv2d_7[0][0]              | relu    | ---
+[D]     Dropout         | (None, 32, 1501, 40) | 0       | dropout_7              | activation_7[0][0]          | ---     | ---
+[D]     MaxPooling2D    | (None, 32, 1501, 8)  | 0       | max_pooling2d_7        | dropout_7[0][0]             | ---     | ---
+[D]     Conv2D          | (None, 32, 1501, 8)  | 25632   | conv2d_8               | max_pooling2d_7[0][0]       | linear  | normal
+[D]     Activation      | (None, 32, 1501, 8)  | 0       | activation_8           | conv2d_8[0][0]              | relu    | ---
+[D]     Dropout         | (None, 32, 1501, 8)  | 0       | dropout_8              | activation_8[0][0]          | ---     | ---
+[D]     MaxPooling2D    | (None, 32, 1501, 2)  | 0       | max_pooling2d_8        | dropout_8[0][0]             | ---     | ---
+[D]     Conv2D          | (None, 32, 1501, 2)  | 25632   | conv2d_9               | max_pooling2d_8[0][0]       | linear  | normal
+[D]     Activation      | (None, 32, 1501, 2)  | 0       | activation_9           | conv2d_9[0][0]              | relu    | ---
+[D]     Dropout         | (None, 32, 1501, 2)  | 0       | dropout_9              | activation_9[0][0]          | ---     | ---
+[D]     MaxPooling2D    | (None, 32, 1501, 1)  | 0       | max_pooling2d_9        | dropout_9[0][0]             | ---     | ---
+[D]     Permute         | (None, 1501, 32, 1)  | 0       | permute_3              | max_pooling2d_9[0][0]       | ---     | ---
+[D]     Reshape         | (None, 1501, 32)     | 0       | reshape_3              | permute_3[0][0]             | ---     | ---
+[D]     GRU             | (None, 1501, 32)     | 6240    | gru_3                  | reshape_3[0][0]             | tanh    | uniform
+[D]     TimeDistributed | (None, 1501, 1)      | 33      | time_distributed_3     | gru_3[0][0]                 | ---     | ---
+[D]
+[D]   Parameters
+[D]     Trainable	[58,369]
+[D]     Non-Trainable	[0]
+[D]     Total		[58,369]
+[D]
+[D]   Files
+[D]     Training 	[450]
+[D]     Validation 	[50]
+[D]
+[D]   Input
+[D]     Feature vector 	[40]
+[D]     Sequence	[1501]		(30.02 sec)
+[D]
+[D]   Batch size 	[32]
+[D]   Epochs 		[200]
+[D]
+[D]   Generator
+[D]     Shuffle 	[True]
+[D]     Epoch size	[15 batches]
+[D]     Buffer size 	[100 files]
+[D]
+[D]   Epoch processing 	[Epoch-by-Epoch]
+[D]
+[D]   External metrics
+[D]     Metrics		Label	Evaluator:Name
+[D]     		[evtER]	[sed_eval.event_based:overall.error_rate.error_rate]
+[D]     		[evtF1]	[sed_eval.event_based:overall.f_measure.f_measure]
+[D]     Interval 	[1 epochs]
+[D]
+                                                                                                                                                                                                                                             /home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/site-packages/sed_eval/sound_event.py:544: RuntimeWarning: Mean of empty slice
+  'f_measure': float(numpy.nanmean(event_wise_f_measure)),
+/home/hirotoshi/.pyenv/versions/anaconda3-2019.10/lib/python3.6/site-packages/sed_eval/sound_event.py:545: RuntimeWarning: Mean of empty slice
+  'precision': float(numpy.nanmean(event_wise_precision)),                                                                                                | 1/200 [00:14<49:08, 14.82s/it, l_tra=0.431, l_val=0.124, m_tra=1.000, m_val=1.000]
+                                                                                                                                                                                                                                             [I]   Stopping criteria met at epoch[103]
+[I]     metric[evtER], patience[25]
+[I]
+[I]   Best model weights at epoch[77]███████████████████████████████████                                                   | 104/200 [1:12:16<1:06:56, 41.84s/it, l_tra=0.022, l_val=0.107, m_tra=1.000, m_val=1.000, evtER=0.040, evtF1=98.0]
+[I]     metric[evtER]=0.0400
+[I]
+[D]
+[I]   DONE     [3:53:42.186237 ]
+[I]
+[I] System testing
+[I] ==================================================
+[I]
+                                                                                                                                                                                                                                             [I]   DONE     [0:07:02.105736 ]
+[I]
+[I] System evaluation [Development setup][folds]
+[I] ==================================================
+[I]
+[I]   Event [babycry], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 85.54 %
+[I]     Precision                       : 87.34 %
+[I]     Recall                          : 83.81 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.28
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.16
+[I]     Insertion rate                  : 0.12
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     babycry      | 247     237   | 85.5%    87.3%    83.8%  | 0.28     0.16     0.12   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 87.79 %
+[I]     Precision                       : 92.37 %
+[I]     Recall                          : 83.64 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.23
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.16
+[I]     Insertion rate                  : 0.07
+[I]   Accuracy
+[I]     Sensitivity                     : 83.64 %
+[I]     Specificity                     : 98.48 %
+[I]     Balanced accuracy               : 91.06 %
+[I]     Accuracy                        : 95.80 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     babycry      | 709     642   | 87.8%    92.4%    83.6%  | 0.23     0.16     0.07   | 83.6%    98.5%    91.1%    95.8%
+[I]   Event [glassbreak], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 93.15 %
+[I]     Precision                       : 93.90 %
+[I]     Recall                          : 92.40 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.14
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.08
+[I]     Insertion rate                  : 0.06
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     glassbreak   | 250     246   | 93.1%    93.9%    92.4%  | 0.14     0.08     0.06   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 88.92 %
+[I]     Precision                       : 90.41 %
+[I]     Recall                          : 87.47 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.22
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.13
+[I]     Insertion rate                  : 0.09
+[I]   Accuracy
+[I]     Sensitivity                     : 87.47 %
+[I]     Specificity                     : 98.93 %
+[I]     Balanced accuracy               : 93.20 %
+[I]     Accuracy                        : 97.74 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     glassbreak   | 431     417   | 88.9%    90.4%    87.5%  | 0.22     0.13     0.09   | 87.5%    98.9%    93.2%    97.7%
+[I]   Event [gunshot], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 81.14 %
+[I]     Precision                       : 82.30 %
+[I]     Recall                          : 80.00 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.37
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.20
+[I]     Insertion rate                  : 0.17
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     gunshot      | 250     243   | 81.1%    82.3%    80.0%  | 0.37     0.20     0.17   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 56.68 %
+[I]     Precision                       : 43.89 %
+[I]     Recall                          : 80.00 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 1.22
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.20
+[I]     Insertion rate                  : 1.02
+[I]   Accuracy
+[I]     Sensitivity                     : 80.00 %
+[I]     Specificity                     : 85.68 %
+[I]     Balanced accuracy               : 82.84 %
+[I]     Accuracy                        : 84.98 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     gunshot      | 530     966   | 56.7%    43.9%    80.0%  | 1.22     0.20     1.02   | 80.0%    85.7%    82.8%    85.0%
+[I]
+[I]   Overall metrics
+[I]   ===============
+[I]     Event label       | Evt. F1 | Evt. ER | Seg. F1 | Seg. ER |
+[I]     ----------------- + ------- + ------- + ------- + ------- +
+[I]     babycry           | 85.54   | 0.28    | 87.79   | 0.23    |
+[I]     glassbreak        | 93.15   | 0.14    | 88.92   | 0.22    |
+[I]     gunshot           | 81.14   | 0.37    | 56.68   | 1.22    |
+[I]     ----------------- + ------- + ------- + ------- + ------- +
+[I]     Average           | 86.61   | 0.26    | 77.80   | 0.56    |
+[I]
+[I]   DONE     [0:00:02.068352 ]
+[I]
+
+
+
+====================== Cakir table1. - units 160 ==================
+[I]   DONE     [7:36:34.852481 ]
+[I]
+[I] System testing
+[I] ==================================================
+[I]
+                                                                                                                                                                                                 [I]   DONE     [0:20:56.902413 ]
+[I]
+[I] System evaluation [Development setup][folds]
+[I] ==================================================
+[I]
+[I]   Event [babycry], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 85.53 %
+[I]     Precision                       : 88.70 %
+[I]     Recall                          : 82.59 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.28
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.17
+[I]     Insertion rate                  : 0.11
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     babycry      | 247     230   | 85.5%    88.7%    82.6%  | 0.28     0.17     0.11   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 85.76 %
+[I]     Precision                       : 89.43 %
+[I]     Recall                          : 82.37 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.27
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.18
+[I]     Insertion rate                  : 0.10
+[I]   Accuracy
+[I]     Sensitivity                     : 82.37 %
+[I]     Specificity                     : 97.90 %
+[I]     Balanced accuracy               : 90.14 %
+[I]     Accuracy                        : 95.15 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     babycry      | 709     653   | 85.8%    89.4%    82.4%  | 0.27     0.18     0.10   | 82.4%    97.9%    90.1%    95.1%
+[I]   Event [glassbreak], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 96.51 %
+[I]     Precision                       : 99.16 %
+[I]     Recall                          : 94.00 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.07
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.06
+[I]     Insertion rate                  : 0.01
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     glassbreak   | 250     237   | 96.5%    99.2%    94.0%  | 0.07     0.06     0.01   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 92.03 %
+[I]     Precision                       : 95.97 %
+[I]     Recall                          : 88.40 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.15
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.12
+[I]     Insertion rate                  : 0.04
+[I]   Accuracy
+[I]     Sensitivity                     : 88.40 %
+[I]     Specificity                     : 99.57 %
+[I]     Balanced accuracy               : 93.98 %
+[I]     Accuracy                        : 98.40 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     glassbreak   | 431     397   | 92.0%    96.0%    88.4%  | 0.15     0.12     0.04   | 88.4%    99.6%    94.0%    98.4%
+[I]   Event [gunshot], Evaluation over 1 folds
+[I]
+[I]   Event-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 82.40 %
+[I]     Precision                       : 88.89 %
+[I]     Recall                          : 76.80 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.33
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.23
+[I]     Insertion rate                  : 0.10
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    |
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ |
+[I]     gunshot      | 250     216   | 82.4%    88.9%    76.8%  | 0.33     0.23     0.10   |
+[I]   Segment-based metrics
+[I]   Overall metrics (micro-average)
+[I]   ======================================
+[I]   F-measure
+[I]     F-measure (F1)                  : 73.74 %
+[I]     Precision                       : 79.35 %
+[I]     Recall                          : 68.87 %
+[I]   Error rate
+[I]     Error rate (ER)                 : 0.49
+[I]     Substitution rate               : 0.00
+[I]     Deletion rate                   : 0.31
+[I]     Insertion rate                  : 0.18
+[I]   Accuracy
+[I]     Sensitivity                     : 68.87 %
+[I]     Specificity                     : 96.95 %
+[I]     Balanced accuracy               : 82.91 %
+[I]     Accuracy                        : 92.86 %
+[I]   Class-wise metrics
+[I]   ======================================
+[I]     Event label  | Nref    Nsys  | F        Pre      Rec    | ER       Del      Ins    | Sens     Spec     Bacc     Acc
+[I]     ------------ | -----   ----- | ------   ------   ------ | ------   ------   ------ | ------   ------   ------   ------
+[I]     gunshot      | 530     460   | 73.7%    79.3%    68.9%  | 0.49     0.31     0.18   | 68.9%    96.9%    82.9%    92.9%
+[I]
+[I]   Overall metrics
+[I]   ===============
+[I]     Event label       | Evt. F1 | Evt. ER | Seg. F1 | Seg. ER |
+[I]     ----------------- + ------- + ------- + ------- + ------- +
+[I]     babycry           | 85.53   | 0.28    | 85.76   | 0.27    |
+[I]     glassbreak        | 96.51   | 0.07    | 92.03   | 0.15    |
+[I]     gunshot           | 82.40   | 0.33    | 73.74   | 0.49    |
+[I]     ----------------- + ------- + ------- + ------- + ------- +
+[I]     Average           | 88.15   | 0.23    | 83.84   | 0.31    |
+[I]
+[I]   DONE     [0:00:01.989784 ]
