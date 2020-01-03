@@ -1,0 +1,13 @@
+
+    event_activity_processing:
+      enable: true
+      type: median_filtering
+      window_length_seconds: 0.54
+
+    event_post_processing:
+      enable: false
+      minimum_event_length_seconds: 0.1
+      minimum_event_gap_second: 0.1
+
+0.1 秒以上のdurationじゃないとイベントと認めない
+0.1 秒以下の gap は同一イベントとみなす

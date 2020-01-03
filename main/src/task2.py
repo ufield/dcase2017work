@@ -241,7 +241,6 @@ def main(argv):
             app.show_eval()
             return
 
-        # Initialize application
         # ==================================================
         if params['flow']['initialize']:
             app.initialize()
@@ -261,6 +260,7 @@ def main(argv):
         if params['flow']['train_system']:
             app.system_training()
 
+        # Initialize application
         # System evaluation in development mode
         if not args.mode or args.mode == 'dev':
 
@@ -276,6 +276,7 @@ def main(argv):
 
         # System evaluation with challenge data
         elif args.mode == 'challenge':
+
             # Set dataset to testing set for challenge
             params['dataset']['method'] = 'challenge_test'
 

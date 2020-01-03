@@ -51,6 +51,7 @@ logs/
 models/
 data/
 results/
+challenge_submission/
 
 # yml
 *.yml
